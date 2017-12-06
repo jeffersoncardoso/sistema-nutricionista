@@ -14,11 +14,11 @@ public class SqliteConnection {
      * Connect to a sample database
      */
     public void connect() {
+        System.out.println("Testando");
         Connection conn = null;
         try {
-            // db parameters
-            String url = "jdbc:sqlite:C:/sqlite/db/chinook.db";
-            // create a connection to the database
+            String url = "jdbc:sqlite:C:/Users/0190690/Desktop/trab-prog3/database/database.sqlite";
+            
             conn = DriverManager.getConnection(url);
             
             System.out.println("Connection to SQLite has been established.");

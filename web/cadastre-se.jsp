@@ -5,6 +5,9 @@
 
     <div class="container">
         <form id="form-cadastre-se" method="POST">
+            <div v-if="senhasNaoConferem" class="alert alert-danger">
+                As senhas não conferem
+            </div>
             <div v-if="errors.any()" class="alert alert-danger">
                 <ul> <li v-for="error in errors.all()">{{ error }}</li> </ul>
             </div>
@@ -30,19 +33,20 @@
             <div class="form-group row">
                 <label for="nascimento" class="col-sm-2 form-control-label">Data de Nascimento</label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control" name="nascimento" id="nascimento">
+                    <input type="date" class="form-control" v-mask="['##/##/####']" name="nascimento" id="nascimento">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="senha" class="col-sm-2 form-control-label">Senha</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" name="senha" id="senha">
+                    <input type="password" v-model="senha" class="form-control" name="senha" id="senha">
+                           
                 </div>
             </div>
             <div class="form-group row">
                 <label for="senha" class="col-sm-2 form-control-label">Confirmar Senha</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" name="senha" id="senha">
+                    <input type="password" v-model="confirmacaoSenha" class="form-control" name="senha" id="senha">
                 </div>
             </div>
             <div class="form-group row text-right">
@@ -59,7 +63,13 @@
     new Vue({
        el: "#form-cadastre-se",
        data: {
-           
+           senha : '',
+           confirmacaoSenha: ''
+       },
+       computed: {
+           senhasNaoConferem: function(){
+               return this.senha != this.confirmacaoSenha;
+           }
        }
     });
 </script>

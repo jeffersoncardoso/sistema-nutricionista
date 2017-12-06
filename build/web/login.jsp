@@ -1,7 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="_header.jsp">
   <jsp:param name="titulo" value="Entre e veja suas dietas"/>
-</jsp:include>
+</jsp:include> 
+
+
 <div class="container">
     <form id="form-login" action="dietas.jsp" method="POST">
         <div v-if="errors.any()" class="alert alert-danger">

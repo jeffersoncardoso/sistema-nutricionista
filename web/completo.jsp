@@ -4,7 +4,7 @@
 </jsp:include>
 
     <div class="container">
-        <form id="form_completo" method="POST">
+        <form id="form_completo" action="dietas.jsp" method="POST">
             <div v-if="errors.any()" class="alert alert-danger">
                 <ul> <li v-for="error in errors.all()">{{ error }}</li> </ul>
             </div>
