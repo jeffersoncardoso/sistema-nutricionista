@@ -30,6 +30,8 @@ public class ClienteControle {
         cliente.setSenha(request.getParameter("senha"));
 
         dao.cadastrar(cliente);
+        
+        this.login(request);
 
         response.sendRedirect("completo.jsp");
     }
