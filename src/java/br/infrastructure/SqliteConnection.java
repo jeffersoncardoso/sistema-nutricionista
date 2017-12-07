@@ -12,12 +12,10 @@ import java.sql.Statement;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.sqlite.SQLiteConnection;
 
 public class SqliteConnection {
     
+    private String connectionUrl = "jdbc:sqlite:C:\\database.db";
     private Connection connection = null;
     
     public SqliteConnection()
@@ -25,7 +23,7 @@ public class SqliteConnection {
         try {
         Class.forName("org.sqlite.JDBC");
             this.connection = DriverManager
-                    .getConnection("jdbc:sqlite:C:\\Users\\jeffe\\Documents\\NetBeansProjects\\trabalho-final\\database\\database.db");
+                    .getConnection(connectionUrl);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
