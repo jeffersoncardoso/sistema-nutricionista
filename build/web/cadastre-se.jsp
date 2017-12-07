@@ -9,7 +9,17 @@
     if(isPost)
     {
         ClienteControle controle = new ClienteControle();
-        controle.cadastrar(request, response);
+        
+        try {
+            controle.cadastrar(request, response);
+        } catch (Exception e) { %>
+            <div class="container">
+                <div class="alert alert-danger">
+                    <%= e.getMessage() %>
+                </div>
+            </div>
+        <% 
+        }
     }
 %>
 

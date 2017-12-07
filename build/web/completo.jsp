@@ -29,26 +29,30 @@
             <div class="form-group row">
                 <label for="sexo" class="col-sm-2 form-control-label">Sexo</label>
                 <div class="col-sm-10">
-                    <input type="text" v-model="sexo" class="form-control" v-validate="'required'" name="sexo" id="sexo">
+                    <select type="text" v-model="sexo" class="form-control" v-validate="'required'" name="sexo" id="sexo">
+                        <option value="">Selecione</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="peso" class="col-sm-2 form-control-label">Peso</label>
                 <div class="col-sm-10">
-                    <input type="text" v-model="peso" class="form-control" v-validate="'required'" name="peso" id="peso">
+                    <input type="text" v-mask="['##.#','###.#', '##', '###']" v-model="peso" class="form-control" v-validate="'required'" name="peso" id="peso">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="altura" class="col-sm-2 form-control-label">Altura</label>
                 <div class="col-sm-10">
-                    <input type="text" v-model="altura" v-validate="'required'" class="form-control" name="altura" id="altura">
+                    <input type="text" v-mask="['#.##']" v-model="altura" v-validate="'required'" class="form-control" name="altura" id="altura">
                 </div>
             </div>
             
             <div class="form-group row">
                 <label for="gordura" class="col-sm-2 form-control-label">% de Gordura</label>
                 <div class="col-sm-10">
-                    <input type="text" v-model="gordura" v-validate="'required'" class="form-control" name="gordura" id="gordura">
+                    <input type="text" v-mask="['##', '##.##']" v-model="gordura" v-validate="'required'" class="form-control" name="gordura" id="gordura">
                 </div>
             </div>
             
@@ -79,7 +83,7 @@
             <div class="form-group row text-right">
                 <div class="col-sm-offset-2 col-sm-12">
                     <a href="dietas.jsp" class="btn btn-secondary">Voltar</a>
-                    <button type="submit" v-bind:disabled="errors.any()" class="btn btn-primary">Cadastrar</button>
+                    <button type="submit" @click="onSubmit()" v-bind:disabled="errors.any()" class="btn btn-primary">Cadastrar</button>
                 </div>
             </div>
         </form>

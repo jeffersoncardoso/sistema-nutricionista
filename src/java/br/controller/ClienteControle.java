@@ -8,30 +8,37 @@ import br.infrastructure.DietaDAO;
 import br.modelo.ClienteDetalhe;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class ClienteControle {
     
-    public void cadastrar(HttpServletRequest request, HttpServletResponse response)
+    public void cadastrar(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
-        try{
-            ClienteDAO dao = new ClienteDAO();
-            Cliente cliente = new Cliente();
-            cliente.setNome(request.getParameter("nome"));
-            cliente.setCpf(request.getParameter("cpf"));
-            cliente.setEmail(request.getParameter("email"));
-            cliente.setDataNascimento(Date.valueOf(request.getParameter("nascimento")));
-            cliente.setSenha(request.getParameter("senha"));
+        this.validarEmailUnico(request.getParameter("email"));
 
-            dao.cadastrar(cliente);
-            
-            response.sendRedirect("completo.jsp");
-        }catch(Exception ex){
-            HttpSession session = request.getSession();
-            session.setAttribute("error", ex.getMessage());
-        }
+        ClienteDAO dao = new ClienteDAO();
+        Cliente cliente = new Cliente();
+        cliente.setNome(request.getParameter("nome"));
+        cliente.setCpf(request.getParameter("cpf"));
+        cliente.setEmail(request.getParameter("email"));
+        cliente.setDataNascimento(Date.valueOf(request.getParameter("nascimento")));
+        cliente.setSenha(request.getParameter("senha"));
+
+        dao.cadastrar(cliente);
+
+        response.sendRedirect("completo.jsp");
+    }
+    
+    private void validarEmailUnico(String email)
+    {
+        ClienteDAO dao = new ClienteDAO();
+        Cliente cliente = dao.buscarPorEmail(email);
+        if(cliente != null) throw new RuntimeException("Email já cadastrado no sistema");
     }
     
     public void cadastrarDadosAdicionais(HttpServletRequest request, HttpServletResponse response)
@@ -82,10 +89,9 @@ public class ClienteControle {
     {
         if(!this.estaLogado(request)){ 
             try {
-                response.sendRedirect("login.jsp");
-            } catch (IOException ex) {
-                HttpSession session = request.getSession();
-                session.setAttribute("error", ex.getMessage());
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            } catch (ServletException | IOException ex) {
+                System.out.print(ex.getMessage());
             }
         }
     }

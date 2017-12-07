@@ -5,12 +5,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <% 
+    NutricionistaControle nutricionistaControle = new NutricionistaControle();
     ClienteControle clienteControle = new ClienteControle();
+    nutricionistaControle.validarSessao(request, response);
+    
     Cliente cliente = clienteControle.buscarCliente(Integer.parseInt(request.getParameter("id")));
     
     if("POST".equals(request.getMethod()))
     {
-        NutricionistaControle nutricionistaControle = new NutricionistaControle();
         nutricionistaControle.cadastrarDieta(request, response);
     }
 %>
@@ -52,55 +54,57 @@
         
         <hr>
         
-        <form method="POST" action="">
-        
+        <form id="form-dieta" method="POST" action="">
+            <div v-if="errors.any()" class="alert alert-danger">
+                <ul> <li v-for="error in errors.all()">{{ error }}</li> </ul>
+            </div>
             <div class="form-group row">
                 <label for="segunda" class="col-sm-2 form-control-label"><strong>Segunda</strong></label>
                 <div class="col-sm-10">
-                    <textarea name="segunda" class="form-control"></textarea>
+                    <textarea name="segunda" v-validate="'required'" class="form-control"></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="terca" class="col-sm-2 form-control-label"><strong>Terça</strong></label>
                 <div class="col-sm-10">
-                    <textarea name="terca" class="form-control"></textarea>
+                    <textarea name="terca" v-validate="'required'" class="form-control"></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="quarta" class="col-sm-2 form-control-label"><strong>Quarta</strong></label>
                 <div class="col-sm-10">
-                    <textarea name="quarta" class="form-control"></textarea>
+                    <textarea name="quarta" v-validate="'required'" class="form-control"></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="quinta" class="col-sm-2 form-control-label"><strong>Quinta</strong></label>
                 <div class="col-sm-10">
-                    <textarea name="quinta" class="form-control"></textarea>
+                    <textarea name="quinta" v-validate="'required'" class="form-control"></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="sexta" class="col-sm-2 form-control-label"><strong>Sexta</strong></label>
                 <div class="col-sm-10">
-                    <textarea name="sexta" class="form-control"></textarea>
+                    <textarea name="sexta" v-validate="'required'" class="form-control"></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="sabado" class="col-sm-2 form-control-label"><strong>Sábado</strong></label>
                 <div class="col-sm-10">
-                    <textarea name="sabado" class="form-control"></textarea>
+                    <textarea name="sabado" v-validate="'required'" class="form-control"></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="domingo" class="col-sm-2 form-control-label"><strong>Domingo</strong></label>
                 <div class="col-sm-10">
-                    <textarea name="domingo" class="form-control"></textarea>
+                    <textarea name="domingo" v-validate="'required'" class="form-control"></textarea>
                 </div>
             </div>
 
             <div class="form-group row text-right">
                 <div class="col-sm-offset-2 col-sm-12">
                     <a href="dietas-nutricionista.jsp" class="btn btn-secondary">Voltar</a>
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <button @click="onSubmit()" v-bind:disabled="errors.any()" type="submit" class="btn btn-primary">Cadastrar</button>
                 </div>
             </div>
         </form>
@@ -108,3 +112,17 @@
 </div>
 
 <%@include file="_footer.jsp" %>
+
+<script>
+    new Vue({
+       el: "#form-dieta",
+       data: {
+           
+       },
+       methods: {
+           onSubmit: function(){
+               this.$validator.validateAll();
+           }
+       }
+    });
+</script>

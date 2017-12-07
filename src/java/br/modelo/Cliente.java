@@ -58,7 +58,6 @@ public class Cliente implements Serializable{
         
         Calendar dataNasc = Calendar.getInstance();  
         dataNasc.setTime(this.getDataNascimento()); 
-        System.out.println(dataNasc);
         Calendar hoje = Calendar.getInstance();  
 
         int idade = hoje.get(Calendar.YEAR) - dataNasc.get(Calendar.YEAR); 

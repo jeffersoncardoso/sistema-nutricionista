@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class DietaDAO extends DAO{
     
     public void cadastrar(Dieta dieta, Integer idCliente, Integer idNutricionista){
-        System.out.print(dieta.getTerca());
         String sql = "INSERT INTO DIETA("
                 + "DT_CADASTRO, ID_CLIENTE, ID_NUTRICIONISTA, "
                 + "SEGUNDA, TERCA, QUARTA, QUINTA, SEXTA, SABADO, DOMINGO) "

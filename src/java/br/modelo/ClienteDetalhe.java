@@ -51,6 +51,7 @@ public class ClienteDetalhe {
     }
 
     public String getHabitos() {
+        if(habitos == null) return "";
         return habitos.replace(System.getProperty("line.separator"), "");
     }
 
@@ -59,6 +60,7 @@ public class ClienteDetalhe {
     }
 
     public String getExercicio() {
+        if(exercicio == null) return "";
         return exercicio.replace(System.getProperty("line.separator"), "");
     }
 
@@ -67,6 +69,7 @@ public class ClienteDetalhe {
     }
 
     public String getSaude() {
+        if(saude == null) return "";
         return saude.replace(System.getProperty("line.separator"), "");
     }
 

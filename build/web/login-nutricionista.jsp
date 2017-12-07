@@ -25,13 +25,13 @@
         <div class="form-group row">
             <label for="email" class="col-sm-2 form-control-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" v-validate="'required'" class="form-control" name="email" id="email">
+                <input type="email" v-validate="'required'" class="form-control" name="email" id="email" value="fernanda@teste.com">
             </div>
         </div>
         <div class="form-group row">
             <label for="senha" class="col-sm-2 form-control-label">Senha</label>
             <div class="col-sm-10">
-                <input type="password" v-validate="'required'" class="form-control" name="senha" id="senha">
+                <input type="password" v-validate="'required'" class="form-control" name="senha" id="senha" value="12345">
             </div>
         </div>
         <div class="form-group row text-right">

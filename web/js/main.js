@@ -23,3 +23,7 @@ const config = {
 };
 
 Vue.use(VeeValidate, config);
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
