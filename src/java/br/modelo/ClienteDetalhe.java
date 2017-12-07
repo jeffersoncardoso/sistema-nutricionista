@@ -51,7 +51,7 @@ public class ClienteDetalhe {
     }
 
     public String getHabitos() {
-        return habitos;
+        return habitos.replace(System.getProperty("line.separator"), "");
     }
 
     public void setHabitos(String habitos) {
@@ -59,7 +59,7 @@ public class ClienteDetalhe {
     }
 
     public String getExercicio() {
-        return exercicio;
+        return exercicio.replace(System.getProperty("line.separator"), "");
     }
 
     public void setExercicio(String exercicio) {
@@ -67,7 +67,7 @@ public class ClienteDetalhe {
     }
 
     public String getSaude() {
-        return saude;
+        return saude.replace(System.getProperty("line.separator"), "");
     }
 
     public void setSaude(String saude) {

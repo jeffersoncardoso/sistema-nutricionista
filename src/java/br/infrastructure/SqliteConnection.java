@@ -7,32 +7,69 @@ package br.infrastructure;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.sqlite.SQLiteConnection;
 
 public class SqliteConnection {
-    /**
-     * Connect to a sample database
-     */
-    public void connect() {
-        System.out.println("Testando");
-        Connection conn = null;
+    
+    private Connection connection = null;
+    
+    public SqliteConnection()
+    {
         try {
-            String url = "jdbc:sqlite:C:/Users/0190690/Desktop/trab-prog3/database/database.sqlite";
+        Class.forName("org.sqlite.JDBC");
+            this.connection = DriverManager
+                    .getConnection("jdbc:sqlite:C:\\Users\\jeffe\\Documents\\NetBeansProjects\\trabalho-final\\database\\database.db");
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+    
+    public Statement createStatement() throws SQLException
+    {
+        return connection.createStatement();
+    }
+    
+    public PreparedStatement prepareStatement(String sql) throws SQLException
+    {
+        return connection.prepareStatement(sql);
+    }
+    
+    public void close() throws SQLException
+    {
+        connection.close();
+    }
+    
+    
+    public void connect() {
+        
+        Connection connection = null;
+        ResultSet resultSet = null;
+        Statement statement = null;
+ 
+        try {
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager
+                    .getConnection("jdbc:sqlite:C:\\Users\\jeffe\\Documents\\NetBeansProjects\\trabalho-final\\database\\database.db");
+            statement = connection.createStatement();
+            resultSet = statement
+                    .executeQuery("SELECT ID FROM CLIENTES");
             
-            conn = DriverManager.getConnection(url);
-            
-            System.out.println("Connection to SQLite has been established.");
-            
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e.getMessage());
         } finally {
             try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+                resultSet.close();
+                statement.close();
+                connection.close();
+            } catch (Exception e) {
+                throw new RuntimeException(e.getMessage());
             }
         }
     }

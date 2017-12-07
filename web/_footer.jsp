@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <script src="https://unpkg.com/vue"></script>
+    <script src="js/vue.min.js"></script>
     <script src="js/vee-validate.min.js"></script>
     <script src="js/pt_BR.js"></script>
     <script src="js/vue-the-mask.js"></script>
@@ -9,3 +9,7 @@
     <script src="js/main.js"></script>
     </body>
 </html>
+
+<%
+    request.getSession().removeAttribute("error");
+%>

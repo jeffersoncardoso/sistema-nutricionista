@@ -3,9 +3,9 @@ package br.modelo;
 
 public class Nutricionista {
     private Integer id;
-    private Integer nome;
-    private Integer email;
-    private Integer senha;
+    private String nome;
+    private String email;
+    private String senha;
 
     public Integer getId() {
         return id;
@@ -15,29 +15,31 @@ public class Nutricionista {
         this.id = id;
     }
 
-    public Integer getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(Integer nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public Integer getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Integer email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public Integer getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(Integer senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
     
-    
+    public boolean validarSenha(String senha) {
+        return this.senha.equals(senha);
+    }
 }

@@ -4,3 +4,6 @@
 body{
     
 }
+.card .card-header .mb-0 a{
+    color:#555 !important;
+}

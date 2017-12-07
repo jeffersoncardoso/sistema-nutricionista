@@ -1,9 +1,14 @@
 package br.modelo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Dieta {
     private Integer id;
-    private String dataInicio;
-    private String dataFinal;
+    private Date dataCadastro;
     private String segunda;
     private String terca;
     private String quarta;
@@ -20,20 +25,12 @@ public class Dieta {
         this.id = id;
     }
 
-    public String getDataInicio() {
-        return dataInicio;
+    public Date getDataCadastro() {
+        return dataCadastro;
     }
-
-    public void setDataInicio(String dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    public String getDataFinal() {
-        return dataFinal;
-    }
-
-    public void setDataFinal(String dataFinal) {
-        this.dataFinal = dataFinal;
+    
+    public void setDataCadastro(Date dtCadastro) {
+        this.dataCadastro = dtCadastro;
     }
 
     public String getSegunda() {
