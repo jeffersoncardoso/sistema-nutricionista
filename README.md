@@ -1,6 +1,5 @@
 # Descrição
-- Trabalho realizado para a disciplina de Programação 3, na Universidade Feevale, em Novo Hamburgo-RS (Brasil)
-
+- Trabalho realizado para a disciplina de Programação 3, na Universidade Feevale (Novo Hamburgo - Brasil) para o curso de Ciencia da Computação.
 # Objetivos do Trabalho
 
 - Criação de um sistema para uma empresa de Nutrição. 
