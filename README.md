@@ -22,3 +22,5 @@
 - Font awesome
 - Jquery
 
+# Arquitetura do Sistema
+- Foi feita a divisão de camadas em Model, View e Controller, além de uma camada extra para as classes de infraestrutura. A abstração do banco de dados foi feita utlizadando o padrão DAO (Data Access Object) e as modelos são POJOs (Plain Old Java Object).
